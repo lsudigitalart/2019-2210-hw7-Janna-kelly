@@ -1,6 +1,8 @@
 var song;
 var fft;
 let t = 0; // time variable
+let a;
+let b;
 
 function preload() {
   song = loadSound("ugo.mp3");
@@ -10,8 +12,8 @@ function preload() {
   function setup () {
   createCanvas(600, 600)
   // userStartAudio();
-
   fft = new p5.FFT(0.9, 64); // numbe of bands first # smoothes range
+  a = height / 2;
 }
 
 function mousePressed () {
@@ -51,23 +53,23 @@ function draw() {
 
 // }
 
-    colorMode (HSB);
-  angleMode(DEGREES);
-  var spectrum = fft.analyze();
-  // console.log(spectrum);
-  // noStroke();
-  translate(width / 2, height / 2);
-  //beginShape();
-  for (var i =0; i <spectrum.legnth; i++) {
-    var angle = map(i, 0, spectrum.legnth, 0, 360) ;
-    var amp = spectrum[i];
-    var r = map(amp, 0, 256, 20, 100); // last two is size
-    //fill(i, 255, 255);
-    var x = r * cos(angle);
-    var y = r * sin(angle);
-    stroke(i, 255, 255)
-    line(0, 0, x, y);
-  }
+  //   colorMode (HSB);
+  // angleMode(DEGREES);
+  // var spectrum = fft.analyze();
+  // // console.log(spectrum);
+  // // noStroke();
+  // translate(width / 2, height / 2);
+  // //beginShape();
+  // for (var i =0; i <spectrum.legnth; i++) {
+  //   var angle = map(i, 0, spectrum.legnth, 0, 360) ;
+  //   var amp = spectrum[i];
+  //   var r = map(amp, 0, 256, 20, 100); // last two is size
+  //   //fill(i, 255, 255);
+  //   var x = r * cos(angle);
+  //   var y = r * sin(angle);
+  //   stroke(i, 255, 255)
+  //   line(0, 0, x, y);
+  // }
 
 
 
@@ -76,7 +78,24 @@ function draw() {
 //     //rect(i * w, y, w-2, height - y);
   
 //   //endShape();
+
+stroke (255);
+line(0, a, width, a);
+a = a - 0.8
+if (a <0) {
+  a = height;
+
+ 
 }
 
+
+
+
+
+// stroke(random(0,255), random(0,255), random(0,255));
+// strokeWeight(2);
+// scale(1)
+// translate(150, 450)
+}
 
 
